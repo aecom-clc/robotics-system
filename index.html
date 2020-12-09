@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+  <title>Robotics System</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="aecom.css">
+
+  <style>
+    body {
+      margin: 0;
+    }
+    .hint {
+      font-size: 14px;
+      line-height: 3em;
+      color: gray;
+    }
+
+    #url {
+      width: 100%;
+    }
+
+    .btn-container {
+      margin: 10px;
+    }
+
+    #myPlayer_front {
+      max-width: 600px;
+      width: 100%;
+    }
+    #myPlayer_back {
+      max-width: 600px;
+      width: 100%;
+    }
+
+  </style>
+  <script src="./js/ezuikit/ezuikit.js"></script>
+  <!-- <script src="./js/jquery.min.js"></script> -->
+
+</head>
+
+<body>
+  
+  <br/>
+  <div class="container text-center">
+    <div class="title_backgound_monitoring">
+      <h2 class="monitoring_title">Monitoring</h2>
+    </div>
+    <br/>
+
+    
+
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#home">Camera Menu</a></li>
+      <li><a data-toggle="tab" href="#front" >( Front )</a></li>
+      <li><a data-toggle="tab" href="#back">( Back )</a></li>
+    </ul>
+
+    <div class="tab-content ">
+      <div id="home" class="tab-pane fade in active">     
+          <h3>Options</h3>
+        <p>There are 2 cameras for the Robotics System.</p>
+        <p> - Front-side camera</p>
+        <p> - Back-side camera</p>
+      </div>
+
+      <div id="front" class="tab-pane fade">
+        <h3/>
+        <div class="btn-container">
+          <button id="front_on" class="btn custom">Play</button>
+          <button id="front_off" class="btn custom">Stop</button>
+        </div>
+        <video 
+          id="myPlayer_front"
+          autoplay
+          src=""
+          controls
+          playsInline 
+          webkit-playsinline
+        >
+        </video>
+      </div>
+
+      <div id="back" class="tab-pane fade">
+        <h3/>
+        <div class="btn-container">
+          <button id="back_on" class="btn custom">Play</button>
+          <button id="back_off" class="btn custom">Stop</button>
+        </div>
+        <video 
+          id="myPlayer_back"
+          autoplay
+          src=""
+          controls
+          playsInline 
+          webkit-playsinline
+        >
+        </video>
+      </div>  
+    </div>    
+  </div>
+
+  
+  <div class="container text-center">
+    <div class="title_backgound_monitoring">
+      <h2 class="monitoring_title">Controller Interface</h2>
+    </div>
+    <br/>
+  </div>
+
+
+
+
+  <script>
+    var video_front_url = "https://hls01open.ys7.com/openlive/9934cd91d80d42fd809e62daf1157807.m3u8";
+    var video_back_url = "https://hls01open.ys7.com/openlive/832f0f792a224d32bf64a04723fc310d.m3u8";
+
+    $('#front_on').click(function () {
+      var url_front = video_front_url;
+      $('#myPlayer_front').attr("src", url_front);
+      var player_front = new EZUIKit.EZUIPlayer('myPlayer_front');
+      // 日志
+      player_front.on('log', log);
+
+      function log(str) {
+        var div = document.createElement('DIV');
+        div.innerHTML = (new Date()).Format('yyyy-MM-dd hh:mm:ss.S') + JSON.stringify(str);
+        document.body.appendChild(div);
+      }
+      $("#front_off").click(function () {
+        player_front.stop();
+      })
+    });
+    $('#back_on').click(function () {
+      var url_back = video_back_url;
+      $('#myPlayer_back').attr("src", url_back);
+      var player_back = new EZUIKit.EZUIPlayer('myPlayer_back');
+      // 日志
+      player_back.on('log', log);
+
+      function log(str) {
+        var div = document.createElement('DIV');
+        div.innerHTML = (new Date()).Format('yyyy-MM-dd hh:mm:ss.S') + JSON.stringify(str);
+        document.body.appendChild(div);
+      }
+      $("#back_off").click(function () {
+        player_back.stop();
+      })
+    });
+  </script>
+
+</body>
+
+</html>

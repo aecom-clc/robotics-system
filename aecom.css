@@ -1,0 +1,21 @@
+.content_monitoring {
+  /* height: 800px; */
+}
+
+.text-center {
+  text-align: center;
+}
+
+.custom {
+  width: 240px !important;
+}
+
+.title_backgound_monitoring {
+  background-color: #f0f0f0;
+  height: 70px;
+}
+
+.monitoring_title {
+  /* vertical-align: middle; */
+  display: inline-block;
+}
