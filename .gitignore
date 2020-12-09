@@ -1,0 +1,4 @@
+catkin_ws_rosbridge/build
+catkin_ws_rosbridge/devel
+catkin_ws_rosbridge/logs
+catkin_ws_rosbridge/.catkin_tools
