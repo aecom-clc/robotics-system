@@ -6,6 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="renderer" content="webkit">
   <title>Robotics System</title>
+  <link rel="icon" href="asset/img/roboticssystem-aecom-icon-app.ico" />
+  <link rel="apple-touch-icon" href="asset/img/roboticssystem-aecom-icon-app_192.png" />
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -53,6 +55,7 @@
     // Connecting to ROS
     // -----------------
     var ros = new ROSLIB.Ros({
+      // url : 'ws://192.168.20.47:9090'
       url : 'ws://192.168.20.205:9090'
     });
   
@@ -164,7 +167,13 @@
 
 <body>
   
-  <br/>
+  <div class="container text-center">
+    <div class="title_backgound">      
+    </div>
+  </div>
+  <p/>
+  <img src="asset/img/roboticssystem-aecom-icon.png" alt="Robotics System" height="110" class="roboticsSystem_center">
+  
 
   <div class="container text-center">
     <div class="title_backgound_monitoring">
@@ -173,7 +182,7 @@
     <br/>
   </div>
 
-  <div class="content_controllerInterface_height">    
+  <div class="content_controllerInterface_height text-center">    
     <p>Connection status: <span id="status"></span></p>
     <!-- <p>Last /txt_msg received: <span id="msg"></span></p>
     <p>Last /cmd_vel received: <span id="msg_cmd_vel"></span></p> -->
@@ -269,8 +278,8 @@
       var url_back = video_back_url;
       $('#myPlayer_back').attr("src", url_back);
       var player_back = new EZUIKit.EZUIPlayer('myPlayer_back');
+      
       // 日志
-
       // player_back.on('log', log);
       // function log(str) {
       //   var div = document.createElement('DIV');
