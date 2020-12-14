@@ -1,2 +1,0 @@
-- setup-file:
-    local-name: /sharedVol/docker/sharedVol/aec/ros/robotics_system_js/catkin_ws_rosbridge/devel/.private/robot_gui_bridge/setup.sh

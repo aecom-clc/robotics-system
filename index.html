@@ -33,11 +33,11 @@
     }
 
     #myPlayer_front {
-      max-width: 600px;
+      max-width: 1000px;
       width: 100%;
     }
     #myPlayer_back {
-      max-width: 600px;
+      max-width: 1000px;
       width: 100%;
     }
 
@@ -95,11 +95,11 @@
       document.getElementById("msg_cmd_vel").innerHTML = m.data;
     });
     
-    move = function (linear, angular) {
+    move = function (linear, angular2, angular) {
       var twist = new ROSLIB.Message({
         linear: {
           x: linear,
-          y: 0,
+          y: angular2,
           z: 0
         },
         angular: {
@@ -127,13 +127,14 @@
 
       linear_speed = 0;
       angular_speed = 0;
+      angular2_speed = 0;
 
       // self.manager.on('start', function (event, nipple) {
       //   console.log("Movement start");
       // });
       manager.on('start', function (event, nipple) {
         timer = setInterval(function () {
-          move(linear_speed, angular_speed);
+          move(linear_speed, angular2_speed, angular_speed);
         }, 25);
       });
 
@@ -143,9 +144,11 @@
       manager.on('move', function (event, nipple) {
         max_linear = 0.1; // m/s
         max_angular = 0.1; // rad/s
+        max_angular2 = 23; // rad/s
         max_distance = 75; // pixels;
         linear_speed = Math.sin(nipple.angle.radian) * max_linear * nipple.distance/max_distance;
         angular_speed = -Math.cos(nipple.angle.radian) * max_angular * nipple.distance/max_distance;
+        angular2_speed = -Math.cos(nipple.angle.radian) * max_angular2 * nipple.distance/max_distance;
       });
 
       // manager.on('end', function () {
@@ -154,6 +157,7 @@
       manager.on('end', function (event, nipple) {
         linear_speed = 0;
         angular_speed = 0;
+        angular2_speed = 0;
       });
     }
 
@@ -172,7 +176,7 @@
     </div>
   </div>
   <p/>
-  <img src="asset/img/roboticssystem-aecom-icon.png" alt="Robotics System" height="110" class="roboticsSystem_center">
+  <img src="asset/img/roboticssystem-aecom-icon.png" alt="Robotics System" height="300" class="roboticsSystem_center">
   
 
   <div class="container text-center">
